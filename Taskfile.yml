@@ -1,0 +1,12 @@
+version: '3'
+
+tasks:
+  watch:
+    cmds:
+      - docker compose up logs
+    silent: true
+
+  composer:install:
+    cmds:
+      - docker run  --init --rm -w /var/www/html -v $(pwd):/var/www/html lghs-logs composer install
+    silent: true

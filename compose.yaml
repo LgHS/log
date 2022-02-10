@@ -1,0 +1,15 @@
+name: lghs
+
+services:
+  logs:
+    container_name: lghs-logs
+    build: ./.docker
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - net
+
+networks:
+  net:
