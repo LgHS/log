@@ -1,4 +1,5 @@
 # Log
+Inspired by https://log.shackspace.de/ but with a PWA.
 
 ## License
 
