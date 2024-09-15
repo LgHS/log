@@ -11,8 +11,12 @@ class Media extends Model
 {
     use HasFactory, HasUuids;
 
+    public string $mime_type;
+    public int $size;
+    public string $post_id;
+
     protected $fillable = [
-        'mime_type',
+        'extension',
         'size',
         'post_id',
     ];

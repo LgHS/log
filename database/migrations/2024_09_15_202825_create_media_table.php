@@ -8,9 +8,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('medias', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('mime_type');
+            $table->string('extension');
             $table->integer('size');
             $table->uuid('post_id');
             $table->foreign('post_id')->references('id')->on('post')->onDelete('cascade');

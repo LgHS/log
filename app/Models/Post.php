@@ -12,9 +12,9 @@ class Post extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'author_id', 'submitter_id'];
 
-    public function medias(): HasMany
+    public function media(): HasMany
     {
         return $this->hasMany(Media::class);
     }
