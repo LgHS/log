@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [App\Http\Controllers\LogController::class, 'index'])->name('index');
+Route::get('/{id}', [App\Http\Controllers\LogController::class, 'show'])->name('show');
+
 Route::group(['middleware' => 'keycloak'], function () {
-    Route::get('/', [App\Http\Controllers\LogController::class, 'test'])->name('test');
+    Route::post('/', [App\Http\Controllers\LogController::class, 'create'])->name('create');
+    Route::delete('/{id}', [App\Http\Controllers\LogController::class, 'delete'])->name('delete');
 });
 
