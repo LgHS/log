@@ -20,7 +20,7 @@
             <label for="authors_ids">Auteur:</label>
             <select name="authors_ids[]" id="authors_ids" multiple>
                 @foreach($users as $user)
-                    <option value="{{ $user->id }}" @if($user->id == $current_user_id) selected @endif>{{ $user->username }}</option>
+                    <option value="{{ $user->id }}" @if($user->id == $current_user_id) selected @endif>{{ $user->username }}  @if(isset($user->firstName)) ({{ $user->firstName }}) @endif </option>
                 @endforeach
             </select>
         </div>

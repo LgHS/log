@@ -7,7 +7,7 @@
                         <div class="authors">
                             <ul>
                                 @foreach ($post->authors as $author)
-                                    <li>{{ $author->username }}</li>
+                                    <li>{{ $author->username }}  @if(isset($author->firstName)) ({{ $author->firstName }}) @endif</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -22,7 +22,7 @@
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="submit delete">Delete</button>
+                        <button type="submit" class="submit delete">Supprimer</button>
                     </form>
             @endif</h1>
         @if($post->tags)
