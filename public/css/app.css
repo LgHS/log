@@ -529,6 +529,8 @@ article{
   margin-bottom: 3rem;
   width: 100%;
   max-width: 42rem;
+  border-bottom-width: 1px;
+  padding-bottom: 1.5rem;
 }
 article header{
   margin-bottom: 1rem;

@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 article {
-    @apply mx-auto w-full max-w-2xl mb-12;
+    @apply mx-auto w-full max-w-2xl mb-12 border-b pb-6;
 
     header {
         @apply mb-4 lg:mb-6;
