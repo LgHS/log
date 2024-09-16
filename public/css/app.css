@@ -422,13 +422,18 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.relative{
+  position: relative;
+}
+.-top-2{
+  top: -0.5rem;
+}
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
 }
-.mx-10{
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
+.mb-10{
+  margin-bottom: 2.5rem;
 }
 .mb-4{
   margin-bottom: 1rem;
@@ -439,8 +444,8 @@ video {
 .mr-3{
   margin-right: 0.75rem;
 }
-.mb-10{
-  margin-bottom: 2.5rem;
+.inline{
+  display: inline;
 }
 .flex{
   display: flex;
@@ -533,6 +538,14 @@ article header{
     margin-bottom: 1.5rem;
   }
 }
+article footer{
+  margin-top: 1rem;
+}
+@media (min-width: 1024px){
+  article footer{
+    margin-top: 1.5rem;
+  }
+}
 
 button.submit{
   border-radius: 0.25rem;
@@ -542,6 +555,21 @@ button.submit{
   padding-bottom: 0.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+button.submit.delete{
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 300;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+button.submit.delete:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .authors ul{

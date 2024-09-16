@@ -16,7 +16,15 @@
                 </div>
             </div>
         </address>
-        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white"><a href="{{ route('show', $post->id) }}">{{ $post->title }}</a></h1>
+        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white inline"><a href="{{ route('show', $post->id) }}">{{ $post->title }}</a>
+            @if($post->isAuthor($current_user_id))
+                    <form action="{{ route('delete', $post->id) }}" method="POST" class="inline relative -top-2">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="submit delete">Delete</button>
+                    </form>
+            @endif</h1>
         @if($post->tags)
             <section class="tags">
                 <ul>
@@ -29,7 +37,6 @@
     </header>
 
     <div>
-
         @if($post->media)
         <section class="media">
             @foreach ($post->media as $media)
@@ -40,14 +47,4 @@
         </section>
         @endif
     </div>
-    @if($post->isAuthor($current_user_id))
-    <footer>
-        <form action="{{ route('delete', $post->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-
-            <button type="submit" class="submit">Delete</button>
-        </form>
-    </footer>
-    @endif
 </article>
