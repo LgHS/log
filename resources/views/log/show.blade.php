@@ -1,35 +1,29 @@
-<html>
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
 <body>
-<article>
-    <header>
-        <h1>{{ $post->title }}</h1>
-        <p>Écrit par <span class="author">{{ $post->author_id }}</span></p>
-    </header>
 
-    <footer>
-        @if($post->tags)
-        <section class="tags">
-            <h2>Tags</h2>
-            <ul>
-                @foreach ($post->tags as $tag)
-                    <li><a href="/tag/tag1">{{ $tag->name }}</a></li>
-                @endforeach
-            </ul>
-        </section>
-        @endif
-
-        @if($post->media)
-        <section class="media">
-            <h2>Galerie de médias</h2>
-
-            @foreach ($post->media as $media)
-                <figure>
-                    <img src="{{ $media->id }}.{{ $media->extension }}" alt=""/>
-                </figure>
-            @endforeach
-        </section>
-        @endif
-    </footer>
-</article>
+    <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
+        <div class="flex justify-between px-4 mx-auto max-w-screen-xl flex-col">
+            @include('log/_partials/post', ['post' => $post])
+        </div>
+    </main>
 </body>
 </html>
