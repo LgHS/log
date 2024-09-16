@@ -11,12 +11,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
     use HasFactory, HasUuids;
-
+    public array $authors = [];
     protected $fillable = ['title', 'author_id', 'submitter_id'];
 
     public function media(): HasMany
     {
         return $this->hasMany(Media::class);
+    }
+
+    public function postAuthors(): HasMany
+    {
+        return $this->hasMany(PostAuthor::class, 'post_id', 'id');
     }
 
     public function tags(): BelongsToMany

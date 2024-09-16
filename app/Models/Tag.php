@@ -13,7 +13,6 @@ class Tag extends Model
 
     public $timestamps = false;
 
-    public string $name;
     protected $fillable = ['name'];
 
     public function posts(): BelongsToMany

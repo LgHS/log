@@ -8,17 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('post_tag', function (Blueprint $table) {
+        Schema::create('post_author', function (Blueprint $table) {
             $table->uuid('post_id');
-            $table->uuid('tag_id');
+            $table->uuid('user_id');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-            $table->primary(['post_id', 'tag_id']);
+            $table->primary(['post_id', 'user_id']);
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('post_tag');
+        Schema::dropIfExists('post_author');
     }
 };
