@@ -29,7 +29,7 @@ RUN apk add --no-cache \
 
 RUN echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql mbstring intl zip curl dom soap
+RUN docker-php-ext-install mysqli pdo pdo_mysql mbstring intl zip curl dom soap exif
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install opcache

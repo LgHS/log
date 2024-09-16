@@ -36,7 +36,7 @@
 
         <div>
             <label for="media_files">Médias:</label>
-            <input type="file" multiple name="media_files[]" id="media_files" accept="image/png, image/jpeg"/>
+            <input type="file" multiple name="media_files[]" id="media_files" accept="image/png, image/jpeg, image/heic"/>
         </div>
 
         <button type="submit" class="submit">Soumettre</button>

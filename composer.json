@@ -12,7 +12,8 @@
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
         "lghs/laravel-keycloak-guard": "^3.2",
-        "php-mqtt/laravel-client": "^1.0"
+        "php-mqtt/laravel-client": "^1.0",
+        "spatie/image": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

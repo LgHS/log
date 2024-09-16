@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Spatie\Image\Image;
 
 class LogController extends BaseController
 {
@@ -44,7 +45,7 @@ class LogController extends BaseController
             'tags' => 'nullable|array',
             'tags.*' => 'uuid|exists:tags,id',
             'media_files' => 'nullable|array',
-            'media_files.*' => 'file|mimes:jpg,jpeg,png,gif|max:2048',
+            'media_files.*' => 'file|mimes:jpg,jpeg,png,heic|max:2048',
         ]);
 
         DB::beginTransaction();
@@ -71,15 +72,24 @@ class LogController extends BaseController
 
             if ($request->hasFile('media_files')) {
                 foreach ($request->file('media_files') as $file) {
+
+                    $extension = $file->getClientOriginalExtension();
+
                     $media = new Media([
-                        'extension' => $file->getClientOriginalExtension(),
+                        'extension' => $extension === 'heic' ? 'jpg' : $extension,
                         'size' => $file->getSize()
                     ]);
 
                     $media->post()->associate($post);
                     $media->save();
 
-                    $file->storeAs('media', $media->id.'.'.$file->getClientOriginalExtension(), 'public');
+
+                    if ($extension === 'heic') {
+                        $imagePath = storage_path('app/public/media/' . $media->id.'.jpg');
+                        Image::load($file->getPathname())->save($imagePath);
+                    } else {
+                        $file->storeAs('media', $media->id.'.'.$extension, 'public');
+                    }
                 }
             }
 
