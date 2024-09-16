@@ -23,7 +23,7 @@ class LogController extends BaseController
         $currentUserId = null;
         if(Auth::check()) {
             foreach($posts as $post) {
-                $post->authors = $post->postAuthors->map(function($author) { return $this->getProfileById($author->user_id)->username; })->toArray();
+                $post->authors = $post->postAuthors->map(function($author) { return $this->getProfileById($author->user_id); })->toArray();
             }
 
             $tags = Tag::all();
@@ -95,8 +95,15 @@ class LogController extends BaseController
     public function show(Request $request, string $id) {
         $post = Post::where('id', $id)->first();
         if($post) {
-            $post->author = $this->getProfileById($post->author_id);
-            return view('log/show', ['post' => $post]);
+
+            $currentUserId = null;
+            if(Auth::check()) {
+                $post->authors = $post->postAuthors->map(function ($author) {
+                    return $this->getProfileById($author->user_id);
+                })->toArray();
+                $currentUserId = $this->getProfile()->id;
+            }
+            return view('log/show', ['post' => $post, 'current_user_id' => $currentUserId]);
         }
 
         abort(404);
@@ -105,7 +112,9 @@ class LogController extends BaseController
     public function delete(Request $request, string $id): \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {
         $post = Post::where('id', $id)->first();
-        if($post->author_id == Auth::id() || $post->submitter_id == Auth::id()) {
+        $authorsIds = $post->postAuthors->map(function($author) { return $this->getProfileById($author->user_id)->id; })->toArray();
+        $currentUserId = $this->getProfile()->id;
+        if(in_array($currentUserId, $authorsIds) || $post->submitter_id == Auth::id()) {
             $post->delete();
         }
 

@@ -7,7 +7,7 @@
                         <div class="authors">
                             <ul>
                                 @foreach ($post->authors as $author)
-                                    <li>{{ $author }}</li>
+                                    <li>{{ $author->username }}</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -40,4 +40,14 @@
         </section>
         @endif
     </div>
+    @if($post->isAuthor($current_user_id))
+    <footer>
+        <form action="{{ route('delete', $post->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit" class="submit">Delete</button>
+        </form>
+    </footer>
+    @endif
 </article>

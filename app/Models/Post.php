@@ -14,6 +14,10 @@ class Post extends Model
     public array $authors = [];
     protected $fillable = ['title', 'author_id', 'submitter_id'];
 
+    public function isAuthor(string $id) {
+        return in_array($id, array_map(function ($user) { return $user->id; }, $this->authors));
+    }
+
     public function media(): HasMany
     {
         return $this->hasMany(Media::class);

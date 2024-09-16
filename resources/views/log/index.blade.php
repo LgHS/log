@@ -25,7 +25,9 @@
         @include('log/_partials/form')
 
         <div  class="mx-auto w-full max-w-2xl">
-            @each('log/_partials/post', $posts, 'post')
+            @foreach($posts as $post)
+                @include('log/_partials/post', ['post' => $post, 'current_user_id' => $current_user_id])
+            @endforeach
         </div>
     </div>
 </main>
